@@ -135,13 +135,6 @@ public class EnhancedColumn<T> extends Grid.Column<T> implements BeforeEnterObse
            	}  	
         });
         
-        // need to add a not visible component so filterField (popup component) can be open
-//        Div div = new Div();
-//        div.setId(getInternalId());
-//        div.getElement().getStyle().set("display", "inline-block");
-//		div.getId().ifPresent(id -> filterField.setFor(id));
-//		headerComponent.getElement().appendChild(div.getElement());
-
 		// add filter field to header
        	headerComponent.getElement().appendChild(filterField.getElement());
 		filterField.setTarget(headerComponent);
