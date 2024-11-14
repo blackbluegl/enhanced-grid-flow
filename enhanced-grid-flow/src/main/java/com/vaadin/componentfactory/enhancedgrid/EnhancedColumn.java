@@ -21,6 +21,9 @@ package com.vaadin.componentfactory.enhancedgrid;
  */
 
 import java.util.Comparator;
+
+import com.vaadin.flow.component.AttachEvent;
+import org.apache.commons.lang3.StringUtils;
 import java.util.Optional;
 
 import com.vaadin.flow.component.Component;
@@ -96,7 +99,11 @@ public class EnhancedColumn<T> extends Grid.Column<T> implements BeforeEnterObse
 		if (this.isFilterable()) {
 			this.grid.getElement().executeJs("monkeyPatchHeaderRenderer(this.$connector, $0)", getInternalId());
 		}
-		return (EnhancedColumn<T>) super.setHeader(headerComponent);
+		EnhancedColumn<T> enhancedColumn = (EnhancedColumn<T>) super.setHeader(headerComponent);
+		if(enhancedColumn.getFilter() != null) {
+			enhancedColumn.updateFilterButtonStyle();
+		}
+		return enhancedColumn;
 	}
 
 	/**
